@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "core",
     "accounts.apps.AccountsConfig",
+    "blog",
 ]
 
 MIDDLEWARE = [
