@@ -13,10 +13,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return str(self.title)
 
-def __str__(self):
-    return str(self.title)
-
-
-def get_absolute_url(self):
-    return reverse("post_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("post_detail", kwargs={"pk": self.pk})
