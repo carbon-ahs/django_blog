@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from blog.models import Post
 
@@ -25,5 +25,29 @@ class BlogDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs["pk"]
         title = Post.objects.get(pk=pk).title
+        context["page_title"] = title
+        return context
+
+
+class BlogCreateView(CreateView):
+    model = Post
+    template_name = "post_new.html"
+    fields = ["title", "author", "body"]
+
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        title = "New Post"
+        context["page_title"] = title
+        return context
+
+
+class BlogUpdateView(UpdateView):
+    model = Post
+    template_name = "post_edit.html"
+    fields = ["title", "body"]
+
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        title = "Edit Post"
         context["page_title"] = title
         return context
