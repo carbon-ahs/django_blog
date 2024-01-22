@@ -1,9 +1,10 @@
 <html>
 <head>
-<title>Django blog</title>
+<title> {% block title %} Hello! Wellcome {% endblock %}</title>
 </head>
 <body>
 <header>
+    
 <h1><a href="{% url 'home' %}">Django blog</a></h1>
 </header>
 <div>
