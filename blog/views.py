@@ -1,5 +1,13 @@
+from winreg import DeleteValue
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 from blog.models import Post
 
@@ -49,5 +57,17 @@ class BlogUpdateView(UpdateView):
     def get_context_data(self, **kwargs) -> dict[str, any]:
         context = super().get_context_data(**kwargs)
         title = "Edit Post"
+        context["page_title"] = title
+        return context
+
+
+class BlogDeleteView(DeleteView):
+    model = Post
+    template_name = "post_delete.html"
+    success_url = reverse_lazy("home")
+
+    def get_context_data(self, **kwargs) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        title = "Delete Post"
         context["page_title"] = title
         return context
