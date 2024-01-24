@@ -40,9 +40,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -82,6 +82,8 @@ DATABASES = {
 
 # User Auth
 AUTH_USER_MODEL = "accounts.CustomUser"
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
